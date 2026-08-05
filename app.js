@@ -261,7 +261,7 @@ const galleryData = [
     title: "Ảnh đáng yêu của hai đứa",
     description:
       "Một khung ảnh riêng để giữ lại nụ cười và năng lượng dịu dàng nhất.",
-    kicker: "Kỷ niệm cuối",
+    kicker: "Khỉ và gà connn",
   },
 ];
 
@@ -312,6 +312,64 @@ function buildPlaceholderSvg(title, subtitle, kind = "image") {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
+const RELATIONSHIP_START = new Date(2026, 5, 28);
+
+function getVideoPreviewTime(videoElement) {
+  const duration = Number(videoElement.duration);
+
+  if (Number.isFinite(duration) && duration > 0.2) {
+    return duration / 2;
+  }
+
+  return 0.1;
+}
+
+function formatDateVN(date) {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
+
+function countDaysInclusive(startDate, endDate) {
+  const startUtc = Date.UTC(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    startDate.getDate(),
+  );
+  const endUtc = Date.UTC(
+    endDate.getFullYear(),
+    endDate.getMonth(),
+    endDate.getDate(),
+  );
+
+  return Math.max(0, Math.round((endUtc - startUtc) / 86400000));
+}
+
+function setupRelationshipCounter() {
+  const counter = document.getElementById("relationship-counter");
+  if (!counter) {
+    return;
+  }
+
+  const today = new Date();
+  const dayCount = countDaysInclusive(RELATIONSHIP_START, today);
+
+  counter.textContent = `Thời gian quen nhau từ 28/06/2026 tới hiện tại (${dayCount} ngày)`;
+}
+
+function setupScrollTopButton() {
+  const scrollTopButton = document.getElementById("scroll-top-btn");
+  if (!scrollTopButton) {
+    return;
+  }
+
+  scrollTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
 function setImageFallback(imageElement) {
   imageElement.addEventListener(
     "error",
@@ -329,7 +387,7 @@ function setImageFallback(imageElement) {
 }
 
 function captureVideoPoster(videoElement) {
-  const tryCapture = () => {
+  const drawPoster = () => {
     try {
       const canvas = document.createElement("canvas");
       canvas.width = videoElement.videoWidth || 800;
@@ -338,10 +396,6 @@ function captureVideoPoster(videoElement) {
 
       if (!context) {
         return;
-      }
-
-      if (videoElement.currentTime < 0.1) {
-        videoElement.currentTime = Math.min(0.1, videoElement.duration || 0.1);
       }
 
       context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
@@ -362,12 +416,31 @@ function captureVideoPoster(videoElement) {
     }
   };
 
-  if (videoElement.readyState >= 2) {
-    tryCapture();
+  const seekAndCapture = () => {
+    const previewTime = getVideoPreviewTime(videoElement);
+
+    if (Math.abs(videoElement.currentTime - previewTime) <= 0.05) {
+      drawPoster();
+      return;
+    }
+
+    videoElement.addEventListener("seeked", drawPoster, { once: true });
+
+    try {
+      videoElement.currentTime = previewTime;
+    } catch (error) {
+      drawPoster();
+    }
+  };
+
+  if (videoElement.readyState >= 1) {
+    seekAndCapture();
     return;
   }
 
-  videoElement.addEventListener("loadeddata", tryCapture, { once: true });
+  videoElement.addEventListener("loadedmetadata", seekAndCapture, {
+    once: true,
+  });
 }
 
 function createRevealClass(side) {
@@ -434,7 +507,11 @@ function createMediaMarkup(item) {
       <span class="story-thumb-visual">
         <img src="${isVideo ? preview : item.src}" alt="${item.title}" data-kind="image" data-preview-role="${isVideo ? "video-thumbnail" : "image-thumbnail"}" data-src="${isVideo ? item.src : ""}" data-subtitle="${item.kicker}" loading="lazy" decoding="async" />
       </span>
-      ${isVideo ? '<span class="story-play-badge" aria-hidden="true">▶</span>' : ""}
+      ${
+        isVideo
+          ? `<span class="story-play-center" aria-hidden="true"><span class="story-play-center-icon">▶</span></span>`
+          : ""
+      }
     </button>
   `;
 }
@@ -672,7 +749,9 @@ function setupImageFallbacks() {
 
 function setupVideoPosters() {
   document
-    .querySelectorAll("button[data-type='video'] img[data-preview-role='video-thumbnail']")
+    .querySelectorAll(
+      "button[data-type='video'] img[data-preview-role='video-thumbnail']",
+    )
     .forEach((thumbnailImage) => {
       const videoSource = thumbnailImage.dataset.src;
       if (!videoSource) {
@@ -684,7 +763,6 @@ function setupVideoPosters() {
       hiddenVideo.muted = true;
       hiddenVideo.playsInline = true;
       hiddenVideo.preload = "auto";
-      hiddenVideo.crossOrigin = "anonymous";
       hiddenVideo.hidden = true;
       hiddenVideo.dataset.src = videoSource;
 
@@ -716,7 +794,7 @@ function setupVideoPosters() {
         "loadedmetadata",
         () => {
           try {
-            hiddenVideo.currentTime = Math.min(0.1, hiddenVideo.duration || 0.1);
+            hiddenVideo.currentTime = getVideoPreviewTime(hiddenVideo);
           } catch (error) {
             applyPoster();
           }
@@ -760,3 +838,5 @@ setupScrollButtons();
 setupMediaTriggers();
 setupModalHandlers();
 setupLoveButton();
+setupRelationshipCounter();
+setupScrollTopButton();
