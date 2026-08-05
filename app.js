@@ -115,8 +115,9 @@ const storyData = [
     reverse: true,
   },
   {
-    date: "21/06/2026 - Buổi date 2",
-    title: "Kẹo, đi ăn ốc và hẹn hò tại bờ kè Thanh Đa view cầu Bình Triệu",
+    date: "21/06/2026 - Buổi date thứ 2",
+    title:
+      "Tặng kẹo, đi ăn ốc và hẹn hò tại bờ kè Thanh Đa view cầu Bình Triệu",
     summary:
       "Buổi tối thứ hai có quà kẹo, bữa ăn ốc và một đoạn dạo chơi tại công viên Thanh Đa thật nhẹ nhàng.",
     media: [
@@ -124,21 +125,21 @@ const storyData = [
         type: "image",
         src: "assets/image/pic6.jpg",
         title: "Kẹo tặng Vy",
-        kicker: "Date 2",
+        kicker: "Chuẩn bị quà",
         description: "Trung mua kẹo làm quà cho Vy.",
       },
       {
         type: "image",
         src: "assets/image/pic7.jpg",
         title: "Đi ăn ốc",
-        kicker: "Date 2",
+        kicker: "Đi ăn tối",
         description: "Cùng nhau đi ăn ốc tại quán quen của em ý.",
       },
       {
         type: "image",
         src: "assets/image/pic8.jpg",
         title: "Bờ kè Thanh Đa view cầu Bình Triệu",
-        kicker: "Date 2",
+        kicker: "Tám chuyện",
         description:
           "Kết thúc bằng một buổi tâm sự mỏng tại view sông cầu Bình Triệu.",
       },
