@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Thiệp tình yêu của Trung và Vy - câu chuyện gặp gỡ, hẹn hò và lời cảm ơn đầy cảm xúc."
+    />
+    <title>Trung ❤️ Vy | Thế giới của chúng ta</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
+    <div class="ambient ambient-3"></div>
+
+    <header class="hero" id="top">
+      <nav class="topbar">
+        <a class="brand" href="#top">
+          <span class="brand-mark">TV❤️</span>
+          <span class="brand-text">Thiệp tình yêu</span>
+        </a>
+        <div class="topbar-actions">
+          <button class="ghost-btn" data-scroll-target="#intro">
+            Giới thiệu
+          </button>
+          <button class="ghost-btn" data-scroll-target="#story">
+            Chuyện tình
+          </button>
+          <button class="ghost-btn" data-scroll-target="#thanks">
+            Lời cảm ơn
+          </button>
+        </div>
+      </nav>
+
+      <section class="hero-content">
+        <div class="hero-copy" data-reveal="up">
+          <p class="eyebrow">A love story in a soft wedding-card style</p>
+          <h1>Trung & Vy</h1>
+          <p class="hero-text">
+            Một trang kỷ niệm tình yêu cute, kể lại hành trình hai người gặp
+            nhau, đồng hành cùng nhau và chính thức bước vào một tình iu siu cấp
+            dễ thươnggg.
+          </p>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="section intro-section" id="intro">
+        <div class="section-heading" data-reveal="up">
+          <p class="section-kicker">Phần đầu</p>
+          <h1>Giới thiệu</h1>
+          <h2>Nhà trai - Nhà gái</h2>
+          <p>
+            Sau đây là phần giới thiệu về hai người, với những thông tin cơ bản
+            và một vài hình ảnh đáng yêu. Chúng ta sẽ cùng nhau khám phá nhé!
+          </p>
+        </div>
+        <div class="profile-grid" id="profile-grid"></div>
+      </section>
+
+      <section class="section story-section" id="story">
+        <div class="section-heading" data-reveal="up">
+          <p class="section-kicker">Hành trình</p>
+          <h2>Duyên gặp gỡ và câu chuyện tình cảm</h2>
+          <p>
+            Mỗi mốc thời gian là một khung chuyện riêng. Ảnh và video có thể bấm
+            để xem chi tiết, với nút đóng ở góc để quay lại đúng đoạn đang lướt.
+          </p>
+        </div>
+        <div class="story-timeline" id="story-timeline"></div>
+      </section>
+
+      <section class="section gallery-section" id="gallery">
+        <div class="section-heading" data-reveal="up">
+          <p class="section-kicker">Khoảnh khắc</p>
+          <h2>Ảnh đáng yêu của hai đứa</h2>
+          <p>
+            Khung ảnh riêng cho những tấm hình ngọt ngào nhất, đặt ở cuối như
+            một dấu chấm mềm.
+          </p>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </section>
+
+      <section class="section thanks-section" id="thanks">
+        <div class="thanks-card" data-reveal="up">
+          <p class="section-kicker">Lời cuối</p>
+          <h2>Cảm ơn em Vy đã đến với anh ❤️</h2>
+          <p>
+            Cảm ơn em Vy đã đến với anh, đi cùng anh qua những ngày bình thường
+            thành những ngày rất đáng nhớ. Mong trang này giữ lại được phần dịu
+            dàng nhất của câu chuyện của chúng ta.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <button
+      class="love-fab"
+      id="love-fab"
+      type="button"
+      aria-label="Phát nhạc và hiệu ứng trái tim"
+    >
+      <span>❤</span>
+    </button>
+
+    <div class="heart-field" id="heart-field" aria-hidden="true"></div>
+
+    <dialog
+      class="media-modal"
+      id="media-modal"
+      aria-label="Xem chi tiết ảnh hoặc video"
+    >
+      <button
+        class="modal-close"
+        id="modal-close"
+        type="button"
+        aria-label="Đóng"
+      >
+        ×
+      </button>
+      <div class="modal-body">
+        <div class="modal-media" id="modal-media"></div>
+        <div class="modal-copy">
+          <p class="modal-kicker" id="modal-kicker"></p>
+          <h3 id="modal-title"></h3>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+    </dialog>
+
+    <audio id="love-sound" preload="auto">
+      <source src="assets/sound/sound1.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="app.js"></script>
+  </body>
+</html>
