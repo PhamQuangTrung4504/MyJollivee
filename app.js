@@ -313,7 +313,7 @@ function buildPlaceholderSvg(title, subtitle, kind = "image") {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
-const RELATIONSHIP_START = new Date(2026, 5, 28);
+const RELATIONSHIP_START = new Date(2026, 4, 28);
 
 function getVideoPreviewTime(videoElement) {
   const duration = Number(videoElement.duration);
@@ -357,7 +357,7 @@ function setupRelationshipCounter() {
   const today = new Date();
   const dayCount = countDaysInclusive(RELATIONSHIP_START, today);
 
-  counter.textContent = `Thời gian quen nhau từ 28/06/2026 tới hiện tại (${dayCount} ngày)`;
+  counter.textContent = `Thời gian quen nhau từ 28/05/2026 tới hiện tại (${dayCount} ngày)`;
 }
 
 function setupScrollTopButton() {
