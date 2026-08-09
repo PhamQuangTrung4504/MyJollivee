@@ -98,23 +98,6 @@ const storyData = [
     reverse: false,
   },
   {
-    date: "Trước date 2",
-    title: "Buổi sáng rửa xe trước khi đi hẹn hò",
-    summary:
-      "Trước buổi date thứ hai, Trung dậy rửa xe để mọi thứ chỉn chu hơn cho buổi gặp gỡ.",
-    media: [
-      {
-        type: "video",
-        src: "assets/video/vid1.mp4",
-        title: "Rửa xe trước bữa date 2",
-        kicker: "Video rửa xe",
-        description:
-          "Sáng đó, Trung rửa xe chuẩn bị cho buổi đi chơi với một người siu đặc biệc.",
-      },
-    ],
-    reverse: true,
-  },
-  {
     date: "21/06/2026 - Buổi date thứ 2",
     title:
       "Tặng kẹo, đi ăn ốc và hẹn hò tại bờ kè Thanh Đa view cầu Bình Triệu",
