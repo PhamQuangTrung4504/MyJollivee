@@ -264,6 +264,18 @@ const galleryData = [
       "Một khung ảnh riêng để giữ lại nụ cười và năng lượng dịu dàng nhất.",
     kicker: "Khỉ và gà connn",
   },
+  {
+    src: "assets/image/pic19.jpg",
+    title: "Selfie cùng nhau nèe",
+    description: "Cùng nhau đi qua những ngày bình thường thành đáng nhớ.",
+    kicker: "Em Vy siu đáng iuu",
+  },
+  {
+    src: "assets/image/pic21.jpg",
+    title: "Khoảnh khắc ngọt ngào",
+    description: "Thêm một khung hình lưu giữ kỉ niệm dịu dàng của hai đứa.",
+    kicker: "Sleepbox nèee",
+  },
 ];
 
 const profileGrid = document.getElementById("profile-grid");
@@ -736,15 +748,46 @@ function setupLoveButton() {
     try {
       loveSound.currentTime = 0;
       await loveSound.play();
-    } catch (error) {
-      // Ignore autoplay restrictions or missing audio file failures.
-    }
+    } catch (error) {}
   });
 }
 
 function setupImageFallbacks() {
   document.querySelectorAll("img").forEach((imageElement) => {
     setImageFallback(imageElement);
+  });
+}
+
+function setupGalleryDrag() {
+  if (!galleryGrid) return;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  galleryGrid.addEventListener("mousedown", (e) => {
+    isDown = true;
+    galleryGrid.classList.add("is-dragging");
+    startX = e.pageX - galleryGrid.offsetLeft;
+    scrollLeft = galleryGrid.scrollLeft;
+  });
+
+  galleryGrid.addEventListener("mouseleave", () => {
+    isDown = false;
+    galleryGrid.classList.remove("is-dragging");
+  });
+
+  galleryGrid.addEventListener("mouseup", () => {
+    isDown = false;
+    galleryGrid.classList.remove("is-dragging");
+  });
+
+  galleryGrid.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - galleryGrid.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    galleryGrid.scrollLeft = scrollLeft - walk;
   });
 }
 
@@ -841,3 +884,4 @@ setupModalHandlers();
 setupLoveButton();
 setupRelationshipCounter();
 setupScrollTopButton();
+setupGalleryDrag();
