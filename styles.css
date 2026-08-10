@@ -277,7 +277,7 @@ a {
 .gallery-grid {
   display: flex !important;
   flex-wrap: nowrap !important;
-  gap: 12px !important;
+  gap: 16px !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
   scroll-behavior: smooth;
@@ -297,7 +297,7 @@ a {
 }
 
 .gallery-grid .gallery-card {
-  flex: 0 0 clamp(250px, 72vw, 320px) !important;
+  flex: 0 0 clamp(240px, 70vw, 310px) !important;
   min-width: 0;
   box-shadow: none !important;
   border: none !important;
@@ -306,8 +306,25 @@ a {
   transform: none !important;
 }
 
-.gallery-grid .gallery-thumb,
+.gallery-grid .gallery-thumb {
+  position: relative;
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  transform: translateZ(0);
+}
+
 .gallery-grid .gallery-thumb img {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  max-height: 420px;
+  object-fit: cover !important;
+  border-radius: 18px !important;
+  background: transparent !important;
   box-shadow: none !important;
   border: none !important;
   outline: none !important;
