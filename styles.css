@@ -285,6 +285,7 @@ a {
   scrollbar-width: none;
   cursor: grab;
   padding-bottom: 8px;
+  align-items: stretch !important;
 }
 
 .gallery-grid::-webkit-scrollbar {
@@ -297,6 +298,8 @@ a {
 }
 
 .gallery-grid .gallery-card {
+  display: flex !important;
+  flex-direction: column !important;
   flex: 0 0 clamp(240px, 70vw, 310px) !important;
   min-width: 0;
   box-shadow: none !important;
@@ -309,25 +312,28 @@ a {
 .gallery-grid .gallery-thumb {
   position: relative;
   width: 100%;
-  height: auto !important;
-  aspect-ratio: auto !important;
+  aspect-ratio: 3 / 4 !important;
   border-radius: 18px !important;
   overflow: hidden !important;
-  background: transparent !important;
+  background: rgba(0, 0, 0, 0.03) !important;
   transform: translateZ(0);
 }
 
 .gallery-grid .gallery-thumb img {
-  display: block;
   width: 100%;
-  height: auto !important;
-  max-height: 420px;
+  height: 100% !important;
   object-fit: cover !important;
   border-radius: 18px !important;
   background: transparent !important;
   box-shadow: none !important;
   border: none !important;
   outline: none !important;
+}
+
+.gallery-grid .gallery-copy {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
 }
 
 .gallery-grid::-webkit-scrollbar {
