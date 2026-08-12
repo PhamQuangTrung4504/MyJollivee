@@ -255,9 +255,16 @@ const galleryData = [
   },
   {
     src: "assets/image/pic21.jpg",
-    title: "Khoảnh khắc ngọt ngào",
+    title: "Cùng nhau đi sleepbox cực kì toẹt dờii",
     description: "Thêm một khung hình lưu giữ kỉ niệm dịu dàng của hai đứa.",
     kicker: "Sleepbox nèee",
+  },
+  {
+    src: "assets/image/pic22.jpg",
+    title: "Em dy tô tượng nèe",
+    description:
+      "Coi ẻm tô nhìn dễ thương ghee hong, nhìn cực kì chiên nghiệp.",
+    kicker: "Tô tượng nhoo",
   },
 ];
 
